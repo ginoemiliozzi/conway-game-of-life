@@ -1,5 +1,5 @@
 package model
-import scala.reflect.ClassManifest
+import scala.reflect.ClassTag
 
 case class AdjacentRows(above: Option[BoardRow], below: Option[BoardRow]) {
 
@@ -81,7 +81,7 @@ case class Board(rows: Seq[BoardRow]) {
 
 object Board {
   // Adding this type parameter because compiler get confused with double def otherwise
-  def apply[X: ClassManifest](commonRows: Seq[Row]): Board = {
+  def apply[X: ClassTag](commonRows: Seq[Row]): Board = {
 
     val boardRows = commonRows.zipWithIndex.map {
       case (row, idx) => BoardRow(row, idx)
